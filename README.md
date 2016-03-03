@@ -15,8 +15,8 @@
 >因为真的很不擅长
 
 ##代码片段
-      public class helloworld{
-        public static void main(String[]agrs){
-          System.out.println("HelloWorld!!!");
-        }
+     public class helloworld{
+      public static void main(String[]agrs){
+       System.out.println("HelloWorld!!!");
       }
+     }
