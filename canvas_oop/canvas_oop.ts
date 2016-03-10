@@ -129,6 +129,14 @@ rect.height = 30;
 rect.color = '#A66829'
 rect.rotation = -Math.PI/20;
 
+var rect2 = new Rect();
+rect2.x=125;
+rect2.y=100;
+rect2.width = 40;
+rect2.height = 20;
+rect2.color = '#A65329'
+rect2.rotation = Math.PI/10;
+
 var arc1 = new Arc();
 arc1.x = 40;
 arc1.y = 100;
@@ -189,12 +197,19 @@ text5.y = 130;
 text5.textsize="20px Arial"
 text5.color='#F57A7A'
 
+var text6 = new TextField();
+text6.filltext='新'
+text6.x = 70;
+text6.y = 57;
+text6.textsize="10px Arial"
+text6.color='#FFFF3C'
+text6.rotation=Math.PI/10;
 var bitmap = new Bitmap();
 bitmap.source = 'bg.jpg';
 
 
 //渲染队列
-var renderQueue = [bitmap, rect, arc1, arc2, arc3, text, text0, text2, text3, text4, text5];
+var renderQueue = [bitmap, rect,  arc1, arc2, arc3, rect2, text, text0, text2, text3, text4, text5, text6];
 //资源加载列表
 var imageList = ['bg.jpg'];
 
