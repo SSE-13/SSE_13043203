@@ -34,13 +34,10 @@ module game {
            
             for (var i = 0; i < NUM_COLS; i++) {
                 for (var j = 0; j < NUM_ROWS; j++) {
-                    if(this.grid.getNode(i,j).walkable){
-                         
-                        context.fillStyle = '#0000FF'
-                      //   context.rect(i * GRID_PIXEL_WIDTH, j * GRID_PIXEL_HEIGHT, GRID_PIXEL_WIDTH, GRID_PIXEL_HEIGHT);
+                    if(this.grid.getNode(i,j).walkable){                         
+                        context.fillStyle = '#0000FF'                   
                     }
-                   else{
-                       
+                   else{                       
                        context.fillStyle = '#000000'             
                      }
                     context.rect(i * GRID_PIXEL_WIDTH, j * GRID_PIXEL_HEIGHT, GRID_PIXEL_WIDTH, GRID_PIXEL_HEIGHT); 
@@ -74,6 +71,8 @@ module game {
        public h = 1;
        public movex =new Array();
        public movey = new Array();
+       
+       
         public run(grid) {
             
             grid.setStartNode(0, 0);
@@ -86,59 +85,13 @@ module game {
             console.log(grid.toString());
             for (var i=0; i < path.length ; i++){
                 this.X[i] =path[i].x;
-                this.Y[i] = path[i].y;
-           
+                this.Y[i] = path[i].y;          
             }
-            //  for (var j = 1 ; j < this.X.length; j++){
-            //     this.dx[j] = this.X[j]-this.X[j-1];
-            //     this.dy[j] = this.Y[j] - this.Y[j-1];
-            //     // this.movex[j]= this.dx[j+1]+this.dx[j];
-            //     // this.movey[j]= this.dy[j+1]+this.dy[j];
-            //     // // this. x [j]=this.dx[j];
-            //     // this. y [j]= this.dy[j];
-            //        // if( this.dx[j]== 0 && this. dy[j]!=0){
-            // //     this.vx=0;
-            // // }
             
-            //         } 
-            //   for(var j = 1;j < this.X.length;j++){
-            //             this.dx[j]= this.X[j]-this.X[j-1];
-            //             this.dy[j]= this.Y[j]-this.Y[j-1];           
-            //     }
-            
-              for(var j =1;j < this.X.length;j++){
+            for(var j =1;j < this.X.length;j++){
                         this.dx[j]= this.X[j]-this.X[j-1];
                         this.dy[j]= this.Y[j]-this.Y[j-1];  
-                    //        if(this.dx[j] = 1){
-                    //     this.vx=2;
-                        
-                    // }
-                    // if(this.dx[j] = 0){
-                    //     this.vx = 3;
-                    // }
-                    //  if(this.dy[j] = 1){
-                    //     this.vy=10;
-                        
-                    // }
-                    // if(this.dy[j] = 0){
-                    //     this.vy = 0;
-                    // } console.log(this.dx[j]);
               }
-                      if(this.dx[j] = 1){
-                        this.vx=2;
-                        
-                    }
-                    if(this.dx[j] = 0){
-                        this.vx = 3;
-                    }
-                     if(this.dy[j] = 1){
-                        this.vy=10;
-                        
-                    }
-                    if(this.dy[j] = 0){
-                        this.vy = 0;
-                    }
-               
                 console.log(this.dy);
                 console.log(this.X);
                 console.log(this.Y);
@@ -146,24 +99,23 @@ module game {
         }
 
         public onTicker(duringTime) {
-            for (var i =0;i<this.dx.length-1;){if(this.dx[i]=1){
-                this.vx = 2;
-               
-                
+            // this.vx = 2;
+            // this.vx = 2;
+            if(this.x <NUM_ROWS * GRID_PIXEL_WIDTH &&this.y < NUM_COLS * GRID_PIXEL_HEIGHT){
+                if(this.h < this.dx.length-1){
+                    this.x += this.dx[this.h] *GRID_PIXEL_WIDTH;
+                    this.y += this.dy[this.h ]* GRID_PIXEL_HEIGHT;
+                    this.h++;
+                }
             }
-            else{ this.vx = 0;
-            
-            }
-             i++;
-        }
-            
-            
-            console.log(i);
             
             
             
-            this.x +=duringTime*this.vx*NUM_ROWS;
-            this.y +=duringTime*this.vy*NUM_COLS;
+            
+            
+            
+            // this.x +=duringTime*this.vx*NUM_ROWS;
+            // this.y +=duringTime*this.vy*NUM_COLS;
             //     }
             //     }
               
@@ -206,7 +158,8 @@ var boyShape = new game.BoyShape();
 var world = new game.WorldMap();
 var body = new game.BoyBody(boyShape);
 body.run(world.grid);
-
+body.vx = 1;
+body.vy = 1;
 
 
 var renderCore = new RenderCore();

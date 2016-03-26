@@ -86,54 +86,26 @@ var game;
                 this.X[i] = path[i].x;
                 this.Y[i] = path[i].y;
             }
-            //  for (var j = 1 ; j < this.X.length; j++){
-            //     this.dx[j] = this.X[j]-this.X[j-1];
-            //     this.dy[j] = this.Y[j] - this.Y[j-1];
-            //     // this.movex[j]= this.dx[j+1]+this.dx[j];
-            //     // this.movey[j]= this.dy[j+1]+this.dy[j];
-            //     // // this. x [j]=this.dx[j];
-            //     // this. y [j]= this.dy[j];
-            //        // if( this.dx[j]== 0 && this. dy[j]!=0){
-            // //     this.vx=0;
-            // // }
-            //         } 
-            //   for(var j = 1;j < this.X.length;j++){
-            //             this.dx[j]= this.X[j]-this.X[j-1];
-            //             this.dy[j]= this.Y[j]-this.Y[j-1];           
-            //     }
             for (var j = 1; j < this.X.length; j++) {
                 this.dx[j] = this.X[j] - this.X[j - 1];
                 this.dy[j] = this.Y[j] - this.Y[j - 1];
-            }
-            if (this.dx[j] = 1) {
-                this.vx = 2;
-            }
-            if (this.dx[j] = 0) {
-                this.vx = 3;
-            }
-            if (this.dy[j] = 1) {
-                this.vy = 10;
-            }
-            if (this.dy[j] = 0) {
-                this.vy = 0;
             }
             console.log(this.dy);
             console.log(this.X);
             console.log(this.Y);
         };
         BoyBody.prototype.onTicker = function (duringTime) {
-            for (var i = 0; i < this.dx.length - 1;) {
-                if (this.dx[i] = 1) {
-                    this.vx = 2;
+            // this.vx = 2;
+            // this.vx = 2;
+            if (this.x < NUM_ROWS * GRID_PIXEL_WIDTH && this.y < NUM_COLS * GRID_PIXEL_HEIGHT) {
+                if (this.h < this.dx.length - 1) {
+                    this.x += this.dx[this.h] * GRID_PIXEL_WIDTH;
+                    this.y += this.dy[this.h] * GRID_PIXEL_HEIGHT;
+                    this.h++;
                 }
-                else {
-                    this.vx = 0;
-                }
-                i++;
             }
-            console.log(i);
-            this.x += duringTime * this.vx * NUM_ROWS;
-            this.y += duringTime * this.vy * NUM_COLS;
+            // this.x +=duringTime*this.vx*NUM_ROWS;
+            // this.y +=duringTime*this.vy*NUM_COLS;
             //     }
             //     }
             // console.log(this.vx);
@@ -164,6 +136,8 @@ var boyShape = new game.BoyShape();
 var world = new game.WorldMap();
 var body = new game.BoyBody(boyShape);
 body.run(world.grid);
+body.vx = 1;
+body.vy = 1;
 var renderCore = new RenderCore();
 renderCore.start([world, boyShape]);
 var ticker = new Ticker();
