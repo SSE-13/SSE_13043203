@@ -51,7 +51,7 @@ button.y=220;
 button.width =80;
 button.height =30;
 button.color ='#FF00F0';
-console.log("ddd");
+
 
 var text = new render.TextField();
 buttoncontainer.addChild(text);
